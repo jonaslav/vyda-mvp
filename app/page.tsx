@@ -1,65 +1,91 @@
 import Image from "next/image";
+import Link from "next/link";
+import { restaurant } from "@/content/restaurant";
+import { menu } from "@/content/menu";
 
 export default function Home() {
+  const featured = menu
+    .find((c) => c.id === "tradisjon")
+    ?.items.slice(0, 4) ?? [];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <>
+      <section className="bg-vyda-mustard-soft">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 px-6 py-20 sm:grid-cols-2">
+          <div>
+            <p className="text-sm font-medium uppercase tracking-widest text-vyda-mustard-deep">
+              Vietnamesisk kjøkken i Trondheim
+            </p>
+            <h1 className="mt-4 text-4xl font-semibold leading-tight tracking-tight text-vyda-ink sm:text-5xl">
+              Ekte vietnamesiske smaker, midt i byen.
+            </h1>
+            <p className="mt-6 max-w-md text-lg text-vyda-muted">
+              Phở, bún, friske vårruller og varme wokretter. Lagd fra bunnen, servert med hjerte.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/meny"
+                className="rounded-full bg-vyda-ink px-6 py-3 text-sm font-medium text-vyda-paper transition-colors hover:bg-vyda-mustard-deep"
+              >
+                Se menyen
+              </Link>
+              <a
+                href={`tel:${restaurant.phone.replace(/\s/g, "")}`}
+                className="rounded-full border border-vyda-ink/20 px-6 py-3 text-sm font-medium text-vyda-ink transition-colors hover:border-vyda-mustard-deep hover:text-vyda-mustard-deep"
+              >
+                Ring {restaurant.phone}
+              </a>
+            </div>
+            <p className="mt-4 text-sm text-vyda-muted">
+              Bord og takeaway bestilles på telefon.
+            </p>
+          </div>
+          <figure className="flex flex-col items-center gap-3 sm:items-end">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              src="/images/vyda_food1.jpg"
+              alt="Phở Bò — vietnamesisk risnudelsuppe med biff og friske urter"
+              width={720}
+              height={480}
+              priority
+              className="rounded-2xl shadow-md object-cover"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            <figcaption className="text-xs uppercase tracking-widest text-vyda-mustard-deep">
+              Phở Bò — husets klassiker
+            </figcaption>
+          </figure>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-6 py-20">
+        <div className="flex items-end justify-between">
+          <h2 className="text-2xl font-semibold tracking-tight text-vyda-ink sm:text-3xl">
+            Husets favoritter
+          </h2>
+          <Link
+            href="/meny"
+            className="text-sm font-medium text-vyda-mustard-deep hover:underline"
+          >
+            Se hele menyen →
+          </Link>
+        </div>
+        <ul className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {featured.map((item) => (
+            <li
+              key={item.code}
+              className="rounded-2xl border border-vyda-ink/10 bg-white p-6 transition-shadow hover:shadow-md"
+            >
+              <p className="text-xs font-medium uppercase tracking-wider text-vyda-mustard-deep">
+                #{item.code}
+              </p>
+              <h3 className="mt-2 text-lg font-semibold text-vyda-ink">{item.name}</h3>
+              <p className="mt-2 text-sm text-vyda-muted">{item.description}</p>
+              <p className="mt-4 text-sm font-medium text-vyda-ink">
+                {item.priceNok} kr
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
   );
 }

@@ -1,0 +1,63 @@
+import Link from "next/link";
+import { restaurant } from "@/content/restaurant";
+
+export function SiteFooter() {
+  const { address, phone, email, delivery } = restaurant;
+
+  return (
+    <footer className="mt-24 border-t border-vyda-ink/10 bg-vyda-ink text-vyda-paper">
+      <div className="mx-auto grid max-w-6xl gap-10 px-6 py-12 sm:grid-cols-3">
+        <div>
+          <h2 className="text-lg font-semibold text-vyda-mustard">VYDA Restaurant</h2>
+          <p className="mt-2 text-sm text-vyda-paper/80">
+            Vietnamesisk kjøkken i Trondheim.
+          </p>
+        </div>
+        <div className="text-sm">
+          <h3 className="font-semibold text-vyda-mustard">Besøk oss</h3>
+          <address className="not-italic mt-2 text-vyda-paper/80">
+            {address.street}<br />
+            {address.postalCode} {address.city}
+          </address>
+          <p className="mt-2">
+            <a href={`tel:${phone.replace(/\s/g, "")}`} className="hover:text-vyda-mustard">
+              {phone}
+            </a>
+          </p>
+          <p>
+            <a href={`mailto:${email}`} className="hover:text-vyda-mustard">
+              {email}
+            </a>
+          </p>
+        </div>
+        <div className="text-sm">
+          <h3 className="font-semibold text-vyda-mustard">Bestill levering</h3>
+          <ul className="mt-2 space-y-1 text-vyda-paper/80">
+            {delivery.map((d) => (
+              <li key={d.name}>
+                <a
+                  href={d.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-vyda-mustard"
+                >
+                  {d.name}
+                </a>
+              </li>
+            ))}
+            <li>
+              <Link href="/kontakt" className="hover:text-vyda-mustard">
+                Kontakt oss
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-vyda-paper/10">
+        <p className="mx-auto max-w-6xl px-6 py-4 text-xs text-vyda-paper/60">
+          © {new Date().getFullYear()} VYDA Restaurant AS
+        </p>
+      </div>
+    </footer>
+  );
+}
