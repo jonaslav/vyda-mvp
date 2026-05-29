@@ -1,0 +1,72 @@
+{
+  "Meta": {
+    "titleDefault": "VYDA Restaurant — Vietnamesisk restaurant i Trondheim",
+    "description": "VYDA Restaurant serverer autentisk vietnamesisk mat i hjertet av Trondheim. Phở, bún, vårruller, wokretter, vegetar og barneretter.",
+    "menuTitle": "Meny",
+    "menuDescription": "Den fulle menyen til VYDA Restaurant: forretter, phở, bún, wokretter, and og lam, vegetar og barneretter.",
+    "contactTitle": "Kontakt",
+    "contactDescription": "Adresse, åpningstider og kontaktinformasjon til VYDA Restaurant i Trondheim."
+  },
+  "Nav": {
+    "home": "Hjem",
+    "menu": "Meny",
+    "contact": "Kontakt",
+    "toFront": "Til forsiden",
+    "switchTo": "English"
+  },
+  "Footer": {
+    "tagline": "Vietnamesisk kjøkken i Trondheim.",
+    "visitUs": "Besøk oss",
+    "orderDelivery": "Bestill levering",
+    "followUs": "Følg oss",
+    "contactUs": "Kontakt oss",
+    "copyright": "© {year} VYDA Restaurant AS",
+    "facebookLabel": "VYDA Restaurant på Facebook"
+  },
+  "Home": {
+    "kicker": "Vietnamesisk kjøkken i Trondheim",
+    "heroHeading": "Ekte vietnamesiske smaker, midt i byen.",
+    "heroBody": "Phở, bún, friske vårruller og varme wokretter. Lagd fra bunnen, servert med hjerte.",
+    "seeMenu": "Se menyen",
+    "callCta": "Ring {phone}",
+    "phoneNote": "Bord og takeaway bestilles på telefon.",
+    "heroImageCaption": "Phở Bò — husets klassiker",
+    "heroImageAlt": "Phở Bò — vietnamesisk risnudelsuppe med biff og friske urter",
+    "favorites": "Husets favoritter",
+    "fullMenuLink": "Se hele menyen →"
+  },
+  "Menu": {
+    "kicker": "Vår meny",
+    "title": "Smaker fra Vietnam",
+    "preface": "Alle priser i norske kroner. Spørsmål om allergener eller tilpasninger? Ring oss gjerne.",
+    "phoneCallout": "Bord og takeaway bestilles på telefon:",
+    "jumpAria": "Hopp til kategori",
+    "deliveryFooter": "Vil du heller bestille hjem?",
+    "deliveryLink": "Se leveringsalternativer"
+  },
+  "Contact": {
+    "kicker": "Besøk oss",
+    "title": "Kontakt VYDA",
+    "address": "Adresse",
+    "callOrWrite": "Ring eller skriv",
+    "phoneNote": "Bord og takeaway bestilles på telefon.",
+    "hours": "Åpningstider",
+    "closed": "Stengt",
+    "hoursNote": "Avvik kan forekomme på helligdager — ring gjerne for å være sikker.",
+    "orderDelivery": "Bestill levering",
+    "amenities": "Hos oss",
+    "followUs": "Følg oss",
+    "openInMaps": "Åpne i Google Maps →",
+    "mapTitle": "Kart over {name}",
+    "mapAria": "Kart"
+  },
+  "Days": {
+    "monday": "Mandag",
+    "tuesday": "Tirsdag",
+    "wednesday": "Onsdag",
+    "thursday": "Torsdag",
+    "friday": "Fredag",
+    "saturday": "Lørdag",
+    "sunday": "Søndag"
+  }
+}

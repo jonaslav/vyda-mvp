@@ -1,23 +1,42 @@
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { restaurant } from "@/content/restaurant";
-import { FacebookIcon } from "../_components/icons";
+import { FacebookIcon } from "../../_components/icons";
+import type { AppLocale } from "@/i18n/routing";
 
-export const metadata: Metadata = {
-  title: "Kontakt",
-  description: "Adresse, åpningstider og kontaktinformasjon til VYDA Restaurant i Trondheim.",
-};
+const dayKeys = [
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
+] as const;
 
-const dayLabels: Record<string, string> = {
-  monday: "Mandag",
-  tuesday: "Tirsdag",
-  wednesday: "Onsdag",
-  thursday: "Torsdag",
-  friday: "Fredag",
-  saturday: "Lørdag",
-  sunday: "Søndag",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: AppLocale }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Meta" });
+  return {
+    title: t("contactTitle"),
+    description: t("contactDescription"),
+  };
+}
 
-export default function KontaktPage() {
+export default async function KontaktPage({
+  params,
+}: {
+  params: Promise<{ locale: AppLocale }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations("Contact");
+  const tDay = await getTranslations("Days");
+
   const { address, phone, email, hours, delivery, features, social } = restaurant;
   const mapsQuery = encodeURIComponent(
     `${address.street}, ${address.postalCode} ${address.city}`
@@ -27,16 +46,16 @@ export default function KontaktPage() {
     <div className="mx-auto max-w-4xl px-6 py-16">
       <header className="text-center">
         <p className="text-sm font-medium uppercase tracking-widest text-vyda-mustard-deep">
-          Besøk oss
+          {t("kicker")}
         </p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight text-vyda-ink sm:text-5xl">
-          Kontakt VYDA
+          {t("title")}
         </h1>
       </header>
 
       <div className="mt-12 grid gap-10 sm:grid-cols-2">
         <section>
-          <h2 className="text-lg font-semibold text-vyda-ink">Adresse</h2>
+          <h2 className="text-lg font-semibold text-vyda-ink">{t("address")}</h2>
           <address className="not-italic mt-2 text-vyda-muted">
             {address.street}<br />
             {address.postalCode} {address.city}
@@ -44,10 +63,8 @@ export default function KontaktPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-vyda-ink">Ring eller skriv</h2>
-          <p className="mt-2 text-sm text-vyda-muted">
-            Bord og takeaway bestilles på telefon.
-          </p>
+          <h2 className="text-lg font-semibold text-vyda-ink">{t("callOrWrite")}</h2>
+          <p className="mt-2 text-sm text-vyda-muted">{t("phoneNote")}</p>
           <p className="mt-3 text-lg">
             <a
               href={`tel:${phone.replace(/\s/g, "")}`}
@@ -67,24 +84,24 @@ export default function KontaktPage() {
         </section>
 
         <section className="sm:col-span-2">
-          <h2 className="text-lg font-semibold text-vyda-ink">Åpningstider</h2>
+          <h2 className="text-lg font-semibold text-vyda-ink">{t("hours")}</h2>
           <dl className="mt-3 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-sm">
-            {Object.entries(hours).map(([day, value]) => (
+            {dayKeys.map((day) => (
               <div key={day} className="contents">
-                <dt className="text-vyda-muted">{dayLabels[day]}</dt>
+                <dt className="text-vyda-muted">{tDay(day)}</dt>
                 <dd className="text-vyda-ink">
-                  {value ?? <span className="text-vyda-muted">Stengt</span>}
+                  {hours[day] ?? (
+                    <span className="text-vyda-muted">{t("closed")}</span>
+                  )}
                 </dd>
               </div>
             ))}
           </dl>
-          <p className="mt-3 text-xs text-vyda-muted">
-            Avvik kan forekomme på helligdager — ring gjerne for å være sikker.
-          </p>
+          <p className="mt-3 text-xs text-vyda-muted">{t("hoursNote")}</p>
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-vyda-ink">Bestill levering</h2>
+          <h2 className="text-lg font-semibold text-vyda-ink">{t("orderDelivery")}</h2>
           <ul className="mt-2 space-y-1">
             {delivery.map((d) => (
               <li key={d.name}>
@@ -102,22 +119,22 @@ export default function KontaktPage() {
         </section>
 
         <section>
-          <h2 className="text-lg font-semibold text-vyda-ink">Hos oss</h2>
+          <h2 className="text-lg font-semibold text-vyda-ink">{t("amenities")}</h2>
           <ul className="mt-2 space-y-1 text-sm text-vyda-muted">
-            {features.map((f) => (
-              <li key={f}>• {f}</li>
+            {features.map((f, i) => (
+              <li key={i}>• {f[locale]}</li>
             ))}
           </ul>
         </section>
 
         <section className="sm:col-span-2">
-          <h2 className="text-lg font-semibold text-vyda-ink">Følg oss</h2>
+          <h2 className="text-lg font-semibold text-vyda-ink">{t("followUs")}</h2>
           <a
             href={social.facebook}
             target="_blank"
             rel="noopener noreferrer"
             className="mt-2 inline-flex items-center gap-2 text-vyda-mustard-deep hover:underline"
-            aria-label="VYDA Restaurant på Facebook"
+            aria-label="VYDA Restaurant Facebook"
           >
             <FacebookIcon className="h-5 w-5" />
             <span>Facebook</span>
@@ -125,10 +142,10 @@ export default function KontaktPage() {
         </section>
       </div>
 
-      <section aria-label="Kart" className="mt-12">
+      <section aria-label={t("mapAria")} className="mt-12">
         <iframe
-          src={`https://maps.google.com/maps?q=${mapsQuery}&hl=no&output=embed`}
-          title={`Kart over ${restaurant.name}`}
+          src={`https://maps.google.com/maps?q=${mapsQuery}&hl=${locale}&output=embed`}
+          title={t("mapTitle", { name: restaurant.name })}
           width="100%"
           height="380"
           loading="lazy"
@@ -141,7 +158,7 @@ export default function KontaktPage() {
           rel="noopener noreferrer"
           className="mt-3 inline-block text-sm text-vyda-mustard-deep hover:underline"
         >
-          Åpne i Google Maps →
+          {t("openInMaps")}
         </a>
       </section>
     </div>

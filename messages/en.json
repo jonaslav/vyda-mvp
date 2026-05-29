@@ -1,0 +1,72 @@
+{
+  "Meta": {
+    "titleDefault": "VYDA Restaurant — Vietnamese restaurant in Trondheim",
+    "description": "VYDA Restaurant serves authentic Vietnamese food in the heart of Trondheim. Phở, bún, spring rolls, wok dishes, vegetarian and children's options.",
+    "menuTitle": "Menu",
+    "menuDescription": "The full menu at VYDA Restaurant: starters, phở, bún, wok dishes, duck and lamb, vegetarian and children's options.",
+    "contactTitle": "Contact",
+    "contactDescription": "Address, opening hours and contact information for VYDA Restaurant in Trondheim."
+  },
+  "Nav": {
+    "home": "Home",
+    "menu": "Menu",
+    "contact": "Contact",
+    "toFront": "To homepage",
+    "switchTo": "Norsk"
+  },
+  "Footer": {
+    "tagline": "Vietnamese cuisine in Trondheim.",
+    "visitUs": "Visit us",
+    "orderDelivery": "Order delivery",
+    "followUs": "Follow us",
+    "contactUs": "Contact us",
+    "copyright": "© {year} VYDA Restaurant AS",
+    "facebookLabel": "VYDA Restaurant on Facebook"
+  },
+  "Home": {
+    "kicker": "Vietnamese cuisine in Trondheim",
+    "heroHeading": "Authentic Vietnamese flavors, in the heart of the city.",
+    "heroBody": "Phở, bún, fresh spring rolls and warm wok dishes. Made from scratch, served with heart.",
+    "seeMenu": "See the menu",
+    "callCta": "Call {phone}",
+    "phoneNote": "Tables and takeaway are booked by phone.",
+    "heroImageCaption": "Phở Bò — our classic",
+    "heroImageAlt": "Phở Bò — Vietnamese rice noodle soup with beef and fresh herbs",
+    "favorites": "House favorites",
+    "fullMenuLink": "See the full menu →"
+  },
+  "Menu": {
+    "kicker": "Our menu",
+    "title": "Flavors from Vietnam",
+    "preface": "All prices in NOK. Questions about allergens or substitutions? Just give us a call.",
+    "phoneCallout": "Tables and takeaway are booked by phone:",
+    "jumpAria": "Jump to category",
+    "deliveryFooter": "Prefer delivery?",
+    "deliveryLink": "See delivery options"
+  },
+  "Contact": {
+    "kicker": "Visit us",
+    "title": "Contact VYDA",
+    "address": "Address",
+    "callOrWrite": "Call or write",
+    "phoneNote": "Tables and takeaway are booked by phone.",
+    "hours": "Opening hours",
+    "closed": "Closed",
+    "hoursNote": "Hours may vary on holidays — please call to be sure.",
+    "orderDelivery": "Order delivery",
+    "amenities": "At our place",
+    "followUs": "Follow us",
+    "openInMaps": "Open in Google Maps →",
+    "mapTitle": "Map of {name}",
+    "mapAria": "Map"
+  },
+  "Days": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday": "Saturday",
+    "sunday": "Sunday"
+  }
+}
