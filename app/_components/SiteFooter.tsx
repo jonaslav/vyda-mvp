@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { restaurant } from "@/content/restaurant";
+import { FacebookIcon } from "./icons";
 
 export function SiteFooter() {
-  const { address, phone, email, delivery } = restaurant;
+  const { address, phone, email, delivery, social } = restaurant;
 
   return (
     <footer className="mt-24 border-t border-vyda-ink/10 bg-vyda-ink text-vyda-paper">
@@ -51,6 +52,17 @@ export function SiteFooter() {
               </Link>
             </li>
           </ul>
+          <h3 className="mt-6 font-semibold text-vyda-mustard">Følg oss</h3>
+          <a
+            href={social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center gap-2 text-vyda-paper/80 hover:text-vyda-mustard"
+            aria-label="VYDA Restaurant på Facebook"
+          >
+            <FacebookIcon className="h-5 w-5" />
+            <span>Facebook</span>
+          </a>
         </div>
       </div>
       <div className="border-t border-vyda-paper/10">

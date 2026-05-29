@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { restaurant } from "@/content/restaurant";
+import { FacebookIcon } from "../_components/icons";
 
 export const metadata: Metadata = {
   title: "Kontakt",
@@ -17,7 +18,7 @@ const dayLabels: Record<string, string> = {
 };
 
 export default function KontaktPage() {
-  const { address, phone, email, hours, delivery, features } = restaurant;
+  const { address, phone, email, hours, delivery, features, social } = restaurant;
   const mapsQuery = encodeURIComponent(
     `${address.street}, ${address.postalCode} ${address.city}`
   );
@@ -40,14 +41,6 @@ export default function KontaktPage() {
             {address.street}<br />
             {address.postalCode} {address.city}
           </address>
-          <a
-            href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-3 inline-block text-sm text-vyda-mustard-deep hover:underline"
-          >
-            Åpne i Google Maps →
-          </a>
         </section>
 
         <section>
@@ -116,7 +109,41 @@ export default function KontaktPage() {
             ))}
           </ul>
         </section>
+
+        <section className="sm:col-span-2">
+          <h2 className="text-lg font-semibold text-vyda-ink">Følg oss</h2>
+          <a
+            href={social.facebook}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center gap-2 text-vyda-mustard-deep hover:underline"
+            aria-label="VYDA Restaurant på Facebook"
+          >
+            <FacebookIcon className="h-5 w-5" />
+            <span>Facebook</span>
+          </a>
+        </section>
       </div>
+
+      <section aria-label="Kart" className="mt-12">
+        <iframe
+          src={`https://maps.google.com/maps?q=${mapsQuery}&hl=no&output=embed`}
+          title={`Kart over ${restaurant.name}`}
+          width="100%"
+          height="380"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          className="rounded-2xl border border-vyda-ink/10"
+        />
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${mapsQuery}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block text-sm text-vyda-mustard-deep hover:underline"
+        >
+          Åpne i Google Maps →
+        </a>
+      </section>
     </div>
   );
 }
